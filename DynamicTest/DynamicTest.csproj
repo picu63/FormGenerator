@@ -225,10 +225,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FormGenerator.Library\FormGenerator.Library.csproj">
-      <Project>{b99f2746-9287-447b-8ca5-645ee19f46d2}</Project>
-      <Name>FormGenerator.Library</Name>
-    </ProjectReference>
     <ProjectReference Include="..\FormGenerator\FormGenerator.csproj">
       <Project>{b93e7b68-3a8c-4edd-ab68-7fd9dd3b5c35}</Project>
       <Name>FormGenerator</Name>

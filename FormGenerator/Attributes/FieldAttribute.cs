@@ -1,11 +1,12 @@
 ﻿using System;
 using System.CodeDom;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.UI;
 
-namespace FormGenerator.Library.Attributes
+namespace FormGenerator.Attributes
 {
     public class FieldAttribute : Attribute
     {
@@ -16,19 +17,27 @@ namespace FormGenerator.Library.Attributes
         /// <param name="variableType">Typ zmiennej.</param>
         /// <param name="defaultValue"></param>
         /// <param name="customControl"></param>
-        public FieldAttribute(string name, VariableType variableType, string defaultValue = "")
+        public FieldAttribute(string id, string name, VariableType variableType = VariableType.Unknown, string defaultValue = "")
         {
             Name = name;
             VariableType = variableType;
             DefaultValue = defaultValue;
+            if (id.Any(char.IsWhiteSpace))
+                throw new Exception("Id cannot contains white spaces");
+            Id = id;
         }
         
-        public FieldAttribute(string name, Control customControl)
+        public FieldAttribute(string id, string name, Control customControl)
         {
             Name = name;
             CustomControl = customControl;
             VariableType = VariableType.CustomControl;
+            if (id.Any(char.IsWhiteSpace))
+                throw new Exception("Id cannot contains white spaces");
+            Id = id;
         }
+
+        public string Id { get; }
         public string Name { get; }
         public Control CustomControl { get; }
         public VariableType VariableType { get; }

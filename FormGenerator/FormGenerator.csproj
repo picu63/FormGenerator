@@ -42,16 +42,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\FieldAttribute.cs" />
+    <Compile Include="Attributes\HeaderAttribute.cs" />
+    <Compile Include="ControlsHelper.cs" />
+    <Compile Include="FormGenerator.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="ModelGenerator.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FormGenerator.Library\FormGenerator.Library.csproj">
-      <Project>{b99f2746-9287-447b-8ca5-645ee19f46d2}</Project>
-      <Name>FormGenerator.Library</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

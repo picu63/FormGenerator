@@ -13,7 +13,7 @@ namespace DynamicTest
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            ModelGenerator<User> modelGenerator = new ModelGenerator<User>(new User()
+            FormGenerator.FormGenerator modelGenerator = new ModelGenerator<User>(new User()
                 {
                     FirstName = "Piotr",
                     LastName = "Olearczyk",
