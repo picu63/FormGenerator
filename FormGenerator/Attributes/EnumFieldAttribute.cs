@@ -7,13 +7,12 @@ using System.Threading.Tasks;
 
 namespace FormGenerator.Attributes
 {
-    public class EnumFieldAttribute : Attribute
+    public class EnumFieldAttribute : FieldAttribute
     {
-        public string Name { get; }
 
-        public EnumFieldAttribute(string name)
+        public EnumFieldAttribute(string id, string name) : base(id, name)
         {
-            Name = name;
+            
         }
     }
 }

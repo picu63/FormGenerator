@@ -20,16 +20,16 @@ namespace DynamicTest.Models
             IsMale = isMale;
             Number = number;
         }
-        [Field("UserFirstName","First name", VariableType.String, "Imie")]
+        [NormalField("UserFirstName","First name", VariableType.String, "Imie")]
         public string FirstName { get; set; }
-        [Field("UserLastName", "Last name", VariableType.String, "Nazwisko")]
+        [NormalField("UserLastName", "Last name", VariableType.String, "Nazwisko")]
         public string LastName { get; set; }
-        [Field("UserType", "Typ użytkownika", VariableType.DropDownMenu)]
         [Required]
+        [DataField("rolaEnum","Rola", ControlDataType.DropDownList)]
         public Rola Rola { get; set; }
-        [Field("IsMale?","Meżczyzna?", VariableType.Bool)]
+        [NormalField("IsMale?","Meżczyzna?", VariableType.Bool)]
         public bool IsMale { get; set; }
-        [Field("PhoneNumber","Numer", VariableType.Nip)]
+        [NormalField("PhoneNumber","Numer", VariableType.Nip)]
         public int Number { get; set; }
 
         public string Testowy { get; set; }

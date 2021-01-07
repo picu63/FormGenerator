@@ -32,11 +32,11 @@ namespace FormGenerator
 
         private object Object { get;}
         private List<Control> AddedControls { get; } = new List<Control>();
-        private static IEnumerable<FieldAttribute> FieldsAttributes { get
+        private static IEnumerable<NormalFieldAttribute> FieldsAttributes { get
         {
             return typeof(T)
                 .GetProperties()
-                .Select(p => p.GetCustomAttribute<FieldAttribute>())
+                .Select(p => p.GetCustomAttribute<NormalFieldAttribute>())
                 .Where(p => p != null)
                 .ToList();
         } }
@@ -77,23 +77,22 @@ namespace FormGenerator
         {
             var name = property.Name;
             var value = property.GetValue(Object);
-            var id = typeof(T).GetProperty(name)?.GetCustomAttribute<FieldAttribute>()?.Id;
-            if (id is null) return;
-            var findedControl = this.GetAllChildren().FirstOrDefault(c => c.ID == id);
+            var attributeId = typeof(T).GetProperty(name)?.GetCustomAttribute<NormalFieldAttribute>()?.Id;
+            if (attributeId is null) return;
+            var addedControls = this.GetAllChildren().FirstOrDefault(c => c.ID == attributeId);
             
-            switch (findedControl)
+            switch (addedControls)
             {
                 case TextBox textBox:
-                    textBox.Text = value.ToString();
+                    if (value != null) textBox.Text = value.ToString();
                     break;
                 
                 case DropDownList dropDownList:
-                    if (value.GetType().IsEnum)
+                    if (value != null && value.GetType().IsEnum)
                     {
                         var enums = Enum.GetValues(value.GetType());
                         foreach (var @enum in enums)
                         {
-                            //TODO Do refaktoryzacji
                             var enumType = value.GetType();
                             var memberInfos = enumType.GetMember(@enum.ToString());
                             var enumValueMemberInfo = memberInfos.FirstOrDefault(m => m.DeclaringType == enumType);
@@ -103,6 +102,10 @@ namespace FormGenerator
 
                             dropDownList.Items.Insert(0, new ListItem(description));
                         }
+                    }
+                    else
+                    {
+                        addedControls = new Button();
                     }
                     break;
                 
@@ -167,11 +170,11 @@ namespace FormGenerator
             this.Controls.Add(FormTable);
         }
         
-        private TableCell CreateValueCell(FieldAttribute fieldAttribute)
+        private TableCell CreateValueCell(NormalFieldAttribute normalFieldAttribute)
         {
             var tableCell = new TableCell();
             var controlToAdd = new Control();
-            switch (fieldAttribute.VariableType)
+            switch (normalFieldAttribute.VariableType)
             {
                 case VariableType.Unknown:
                     tableCell.Text = "Unknown cell";
@@ -188,16 +191,10 @@ namespace FormGenerator
                 case VariableType.Bool:
                     controlToAdd = new CheckBox();
                     break;
-                case VariableType.DropDownMenu:
-                    controlToAdd = new DropDownList();
-                    break;
-                case VariableType.CustomControl:
-                    controlToAdd = fieldAttribute.CustomControl;
-                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-            controlToAdd.ID = fieldAttribute.Id;
+            controlToAdd.ID = normalFieldAttribute.Id;
             AddedControls.Add(controlToAdd);
             tableCell.Controls.Add(controlToAdd);
             return tableCell;

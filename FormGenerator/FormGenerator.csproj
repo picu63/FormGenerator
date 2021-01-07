@@ -42,8 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\CustomFieldAttribute.cs" />
+    <Compile Include="Attributes\DataFieldAttribute.cs" />
     <Compile Include="Attributes\EnumFieldAttribute.cs" />
     <Compile Include="Attributes\FieldAttribute.cs" />
+    <Compile Include="Attributes\NormalFieldAttribute.cs" />
     <Compile Include="Attributes\HeaderAttribute.cs" />
     <Compile Include="ControlsHelper.cs" />
     <Compile Include="FormGenerator.cs">
