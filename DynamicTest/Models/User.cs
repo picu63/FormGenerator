@@ -37,11 +37,11 @@ namespace DynamicTest.Models
 
     public enum Rola
     {
-        [EnumField("Super administrator")]
+        [EnumField("enumAdministrator","Super administrator")]
         Administrator,
-        [EnumField("Kierownik oddziału")]
+        [EnumField("enumKierownik","Kierownik oddziału")]
         Kierownik,
-        [EnumField("Klient oddziału")]
+        [EnumField("enumKlient","Klient oddziału")]
         Klient
     }
 }

@@ -32,11 +32,11 @@ namespace FormGenerator
 
         private object Object { get;}
         private List<Control> AddedControls { get; } = new List<Control>();
-        private static IEnumerable<NormalFieldAttribute> FieldsAttributes { get
+        private static IEnumerable<FieldAttribute> FieldsAttributes { get
         {
             return typeof(T)
                 .GetProperties()
-                .Select(p => p.GetCustomAttribute<NormalFieldAttribute>())
+                .Select(p => p.GetCustomAttribute<FieldAttribute>())
                 .Where(p => p != null)
                 .ToList();
         } }
@@ -163,14 +163,48 @@ namespace FormGenerator
             {
                 var row = new TableRow();
                 row.Cells.Add(new TableCell() {Text = fieldAttribute.Name});
-                var valueCell = CreateValueCell(fieldAttribute);
+                var valueCell = new TableCell();
+                if (fieldAttribute is NormalFieldAttribute normalFieldAttribute)
+                { 
+                    valueCell = CreateNormalValueCell(normalFieldAttribute);
+                }
+                else if (fieldAttribute is DataFieldAttribute dataFieldAttribute)
+                {
+                    valueCell = CreateDataFielCell(dataFieldAttribute);
+                }
                 row.Cells.Add(valueCell);
                 this.FormTable.Rows.Add(row);
             }
             this.Controls.Add(FormTable);
         }
-        
-        private TableCell CreateValueCell(NormalFieldAttribute normalFieldAttribute)
+
+        private TableCell CreateDataFielCell(DataFieldAttribute dataFieldAttribute)
+        {
+            var tableCell = new TableCell();
+            var controlToAdd = new Control();
+            
+            var controlDataType = dataFieldAttribute.ControlDataType;
+            switch (controlDataType)
+            {
+                case ControlDataType.ListView:
+                    controlToAdd = new ListView();
+                    break;
+                case ControlDataType.DropDownList:
+                    controlToAdd = new DropDownList();
+                    break;
+                case ControlDataType.PageWithList:
+                    Response.Redirect("~/Test04.aspx");
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+            controlToAdd.ID = dataFieldAttribute.Id;
+            AddedControls.Add(controlToAdd);
+            tableCell.Controls.Add(controlToAdd);
+            return tableCell;
+        }
+
+        private TableCell CreateNormalValueCell(NormalFieldAttribute normalFieldAttribute)
         {
             var tableCell = new TableCell();
             var controlToAdd = new Control();
