@@ -17,7 +17,7 @@ namespace DynamicTest
                 {
                     FirstName = "Piotr",
                     LastName = "Olearczyk",
-                    Type = Rola.Administrator,
+                    Rola = Rola.Administrator,
                     IsMale = true
                 });
             modelGenerator.CreateForm();

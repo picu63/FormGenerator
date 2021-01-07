@@ -11,13 +11,22 @@ namespace DynamicTest.Models
     [Header("Użytkownik")]
     public class User
     {
+        public User() { }
+        public User(string firstName, string lastName, Rola rola, bool isMale, int number)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            Rola = rola;
+            IsMale = isMale;
+            Number = number;
+        }
         [Field("UserFirstName","First name", VariableType.String, "Imie")]
         public string FirstName { get; set; }
         [Field("UserLastName", "Last name", VariableType.String, "Nazwisko")]
         public string LastName { get; set; }
         [Field("UserType", "Typ użytkownika", VariableType.DropDownMenu)]
         [Required]
-        public Rola Type { get; set; }
+        public Rola Rola { get; set; }
         [Field("IsMale?","Meżczyzna?", VariableType.Bool)]
         public bool IsMale { get; set; }
         [Field("PhoneNumber","Numer", VariableType.Nip)]
@@ -28,11 +37,11 @@ namespace DynamicTest.Models
 
     public enum Rola
     {
-        [Field("administratorEnum","Super administrator")]
+        [EnumField("Super administrator")]
         Administrator,
-        [Field("kierownik","Kierownik oddziału")]
+        [EnumField("Kierownik oddziału")]
         Kierownik,
-        [Field("klient","Klient oddziału")]
+        [EnumField("Klient oddziału")]
         Klient
     }
 }

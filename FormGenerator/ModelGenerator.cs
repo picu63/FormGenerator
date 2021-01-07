@@ -98,8 +98,8 @@ namespace FormGenerator
                             var memberInfos = enumType.GetMember(@enum.ToString());
                             var enumValueMemberInfo = memberInfos.FirstOrDefault(m => m.DeclaringType == enumType);
                             var valueAttributes =
-                                enumValueMemberInfo.GetCustomAttributes(typeof(FieldAttribute), false);
-                            var description = ((FieldAttribute) valueAttributes[0]).Name;
+                                enumValueMemberInfo.GetCustomAttributes(typeof(EnumFieldAttribute), false);
+                            var description = ((EnumFieldAttribute) valueAttributes[0]).Name;
 
                             dropDownList.Items.Insert(0, new ListItem(description));
                         }
