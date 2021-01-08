@@ -154,8 +154,8 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
-    <Content Include="Tests\Test01.aspx" />
-    <Content Include="Tests\Test02.aspx" />
+    <Content Include="Tests\SimpleFormWithoutData.aspx" />
+    <Content Include="Tests\SimpleFormWithData.aspx" />
     <Content Include="Tests\Test03.aspx" />
     <Content Include="Tests\Test04.aspx" />
     <Content Include="ViewSwitcher.ascx" />
@@ -206,19 +206,19 @@
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
-    <Compile Include="Tests\Test01.aspx.cs">
-      <DependentUpon>Test01.aspx</DependentUpon>
+    <Compile Include="Tests\SimpleFormWithoutData.aspx.cs">
+      <DependentUpon>SimpleFormWithoutData.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Tests\Test01.aspx.designer.cs">
-      <DependentUpon>Test01.aspx</DependentUpon>
+    <Compile Include="Tests\SimpleFormWithoutData.aspx.designer.cs">
+      <DependentUpon>SimpleFormWithoutData.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Tests\Test02.aspx.cs">
-      <DependentUpon>Test02.aspx</DependentUpon>
+    <Compile Include="Tests\SimpleFormWithData.aspx.cs">
+      <DependentUpon>SimpleFormWithData.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Tests\Test02.aspx.designer.cs">
-      <DependentUpon>Test02.aspx</DependentUpon>
+    <Compile Include="Tests\SimpleFormWithData.aspx.designer.cs">
+      <DependentUpon>SimpleFormWithData.aspx</DependentUpon>
     </Compile>
     <Compile Include="Tests\Test03.aspx.cs">
       <DependentUpon>Test03.aspx</DependentUpon>
