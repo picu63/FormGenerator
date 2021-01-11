@@ -49,10 +49,12 @@
     <Compile Include="Attributes\FieldAttribute.cs" />
     <Compile Include="Attributes\NormalFieldAttribute.cs" />
     <Compile Include="Attributes\HeaderAttribute.cs" />
+    <Compile Include="ControlFiller.cs" />
     <Compile Include="ControlsHelper.cs" />
     <Compile Include="FormGenerator.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="IControlFiller.cs" />
     <Compile Include="ListGenerator.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>

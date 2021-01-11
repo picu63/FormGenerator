@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using DynamicTest.Models;
+using FormGeneratorFluent;
 
 namespace DynamicTest.Tests
 {
@@ -11,9 +13,6 @@ namespace DynamicTest.Tests
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            var list = new List<string>() {"value01", "value02"};
-            ddlWithData.DataSource = list;
-            ddlWithData.DataBind();
         }
     }
 }

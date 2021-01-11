@@ -156,7 +156,7 @@
     <Content Include="Site.Master" />
     <Content Include="Tests\SimpleFormWithoutData.aspx" />
     <Content Include="Tests\SimpleFormWithData.aspx" />
-    <Content Include="Tests\Test03.aspx" />
+    <Content Include="Tests\FluentGenerator.aspx" />
     <Content Include="Tests\Test04.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
@@ -220,12 +220,12 @@
     <Compile Include="Tests\SimpleFormWithData.aspx.designer.cs">
       <DependentUpon>SimpleFormWithData.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Tests\Test03.aspx.cs">
-      <DependentUpon>Test03.aspx</DependentUpon>
+    <Compile Include="Tests\FluentGenerator.aspx.cs">
+      <DependentUpon>FluentGenerator.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Tests\Test03.aspx.designer.cs">
-      <DependentUpon>Test03.aspx</DependentUpon>
+    <Compile Include="Tests\FluentGenerator.aspx.designer.cs">
+      <DependentUpon>FluentGenerator.aspx</DependentUpon>
     </Compile>
     <Compile Include="Tests\Test04.aspx.cs">
       <DependentUpon>Test04.aspx</DependentUpon>
@@ -244,6 +244,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="css" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -257,6 +258,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FormGeneratorFluent\FormGeneratorFluent.csproj">
+      <Project>{11e033e7-3597-465e-a21a-561ec8bef5e0}</Project>
+      <Name>FormGeneratorFluent</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FormGenerator\FormGenerator.csproj">
       <Project>{b93e7b68-3a8c-4edd-ab68-7fd9dd3b5c35}</Project>
       <Name>FormGenerator</Name>

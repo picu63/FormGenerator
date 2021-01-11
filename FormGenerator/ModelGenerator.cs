@@ -13,10 +13,10 @@ using FormGenerator.Attributes;
 
 namespace FormGenerator
 {
-    public class ModelGenerator<T> : FormGenerator
+    public class ModelGenerator<T> : FormGenerator<T>
     {
         /// <summary>
-        /// Class with object parameters
+        /// Tworzenie wypełnionej formatki.
         /// </summary>
         /// <param name="object">Object to send.</param>
         public ModelGenerator(T @object)
@@ -28,8 +28,14 @@ namespace FormGenerator
             }
         }
         
+        /// <summary>
+        /// Tworzenie pustej formatki na podstawie typu.
+        /// </summary>
         public ModelGenerator() { }
-
+        
+        /// <summary>
+        /// Obiekt na podstawie którego wypełniana jest formatka danych.
+        /// </summary>
         private object Object { get;}
         private List<Control> AddedControls { get; } = new List<Control>();
         private static IEnumerable<FieldAttribute> FieldsAttributes { get
@@ -37,8 +43,7 @@ namespace FormGenerator
             return typeof(T)
                 .GetProperties()
                 .Select(p => p.GetCustomAttribute<FieldAttribute>())
-                .Where(p => p != null)
-                .ToList();
+                .Where(p => p != null);
         } }
         public override void CreateForm()
         {
@@ -62,26 +67,19 @@ namespace FormGenerator
 
         private void FillFields()
         {
-            if (Object is null)
-            {
-                throw new ArgumentNullException(typeof(T).Name, "Object cannot be null");
-            }
-
-            foreach (PropertyDescriptor property in TypeDescriptor.GetProperties(Object))
-            {
-                FillControlFromProperty(property);
-            }
+            var propertyDescriptorCollection = TypeDescriptor.GetProperties(Object);
+            var modelFieldsIds = FieldsAttributes.Select(f => f.Id);
+            var controlsIds = this.GetAllChildren().Select(c => c.ID);
         }
 
         private void FillControlFromProperty(PropertyDescriptor property)
         {
             var name = property.Name;
             var value = property.GetValue(Object);
-            var attributeId = typeof(T).GetProperty(name)?.GetCustomAttribute<NormalFieldAttribute>()?.Id;
+            var attributeId = typeof(T).GetProperty(name)?.GetCustomAttribute<FieldAttribute>()?.Id;
             if (attributeId is null) return;
-            var addedControls = this.GetAllChildren().FirstOrDefault(c => c.ID == attributeId);
-            
-            switch (addedControls)
+            var addedControl = this.GetAllChildren().FirstOrDefault(c => c.ID == attributeId);
+            switch (addedControl)
             {
                 case TextBox textBox:
                     if (value != null) textBox.Text = value.ToString();
@@ -105,7 +103,7 @@ namespace FormGenerator
                     }
                     else
                     {
-                        addedControls = new Button();
+                        addedControl = new Button();
                     }
                     break;
                 

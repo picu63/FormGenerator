@@ -13,15 +13,7 @@ namespace DynamicTest
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            FormGenerator.FormGenerator modelGenerator = new ModelGenerator<User>(new User()
-                {
-                    FirstName = "Piotr",
-                    LastName = "Olearczyk",
-                    Rola = Rola.Administrator,
-                    IsMale = true
-                });
-            modelGenerator.CreateForm();
-            this.dynamicPlaceHolder.Controls.Add(modelGenerator);
+            
         }
     }
 }

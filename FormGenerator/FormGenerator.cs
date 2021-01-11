@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace FormGenerator
 {
-    public abstract class FormGenerator : UserControl
+    public abstract class FormGenerator<T> : UserControl
     {
         public Button SaveButton { get; set; }
         public Button DeleteButton { get; set; }
