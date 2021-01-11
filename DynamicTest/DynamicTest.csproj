@@ -154,10 +154,12 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="Tests\FluentGenerator.aspx" />
     <Content Include="Tests\SimpleFormWithoutData.aspx" />
     <Content Include="Tests\SimpleFormWithData.aspx" />
-    <Content Include="Tests\FluentGenerator.aspx" />
-    <Content Include="Tests\Test04.aspx" />
+    <Content Include="Tests\Test04.aspx">
+      <DependentUpon>SimpleFormWithoutData.aspx</DependentUpon>
+    </Content>
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -206,6 +208,13 @@
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
+    <Compile Include="Tests\FluentGenerator.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>FluentGenerator.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\FluentGenerator.aspx.designer.cs">
+      <DependentUpon>FluentGenerator.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Tests\SimpleFormWithoutData.aspx.cs">
       <DependentUpon>SimpleFormWithoutData.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -219,13 +228,6 @@
     </Compile>
     <Compile Include="Tests\SimpleFormWithData.aspx.designer.cs">
       <DependentUpon>SimpleFormWithData.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Tests\FluentGenerator.aspx.cs">
-      <DependentUpon>FluentGenerator.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Tests\FluentGenerator.aspx.designer.cs">
-      <DependentUpon>FluentGenerator.aspx</DependentUpon>
     </Compile>
     <Compile Include="Tests\Test04.aspx.cs">
       <DependentUpon>Test04.aspx</DependentUpon>

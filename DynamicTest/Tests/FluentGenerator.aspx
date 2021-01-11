@@ -1,5 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="../Site.Master" CodeBehind="FluentGenerator.aspx.cs" Inherits="DynamicTest.Tests.Test03" %>
+<%@ Page Title="Title" Language="C#" MasterPageFile="../Site.Master" CodeBehind="FluentGenerator.aspx.cs" Inherits="DynamicTest.Tests.FluentGenerator" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
-    <asp:DropDownList ID="ddlWithData" runat="server"/>
+    <asp:PlaceHolder runat="server" ID="dynamicPH"></asp:PlaceHolder>
 </asp:Content>

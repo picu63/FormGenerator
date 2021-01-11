@@ -6,25 +6,14 @@ namespace FormGeneratorFluent
     {
         public FormCreator()
         {
-            _formSections = new List<IFormSection>();
+            _formSections = new List<FormSection>();
         }
-        private readonly List<IFormSection> _formSections;
+        private readonly List<FormSection> _formSections;
 
-        public FormCreator AddFormEntity(IFormSection formSection)
+        public FormCreator AddFormSection(FormSection formSection)
         {
             _formSections.Add(formSection);
             return this;
         }
-        
-    }
-
-    public class FormSection:IFormSection
-    {
-        
-    }
-
-    public interface IFormSection
-    {
-        
     }
 }

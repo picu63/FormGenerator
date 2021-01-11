@@ -10,16 +10,16 @@
 namespace DynamicTest.Tests {
     
     
-    public partial class Test03 {
+    public partial class FluentGenerator {
         
         /// <summary>
-        /// ddlWithData control.
+        /// dynamicPH control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify, move the field declaration from the designer file to a code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlWithData;
+        protected global::System.Web.UI.WebControls.PlaceHolder dynamicPH;
         
         /// <summary>
         /// Master property.

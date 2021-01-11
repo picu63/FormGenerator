@@ -2,7 +2,7 @@ using System.Web.UI;
 
 namespace FormGeneratorFluent
 {
-    public class ButtonSection: FormSection
+    public abstract class FormSection: UserControl
     {
         
     }

@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace FormGenerator.Attributes
 {
-    public abstract class FieldAttribute: Attribute
+    public abstract class FieldAttribute : Attribute
     {
         public string Id { get; }
         public string Name { get; }
 
-        protected FieldAttribute(string id, string name)
+        public FieldAttribute(string id, string name)
         {
             Id = id;
             Name = name;
