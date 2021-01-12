@@ -1,8 +1,7 @@
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Web.UI.WebControls;
 
-namespace FormGenerator
+namespace FormGenerator.FormFiller
 {
     public interface IControlFiller
     {

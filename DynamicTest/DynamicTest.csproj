@@ -260,10 +260,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FormGeneratorFluent\FormGeneratorFluent.csproj">
-      <Project>{11e033e7-3597-465e-a21a-561ec8bef5e0}</Project>
-      <Name>FormGeneratorFluent</Name>
-    </ProjectReference>
     <ProjectReference Include="..\FormGenerator\FormGenerator.csproj">
       <Project>{b93e7b68-3a8c-4edd-ab68-7fd9dd3b5c35}</Project>
       <Name>FormGenerator</Name>

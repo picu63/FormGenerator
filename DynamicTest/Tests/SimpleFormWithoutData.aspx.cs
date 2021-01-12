@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using DynamicTest.Models;
 using FormGenerator;
+using FormGenerator.FormBuilder;
 
 namespace DynamicTest.Tests
 {

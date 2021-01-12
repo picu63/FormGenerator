@@ -1,60 +1,51 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.ComponentModel;
-using System.Net.Mime;
 using FormGenerator.Attributes;
+using FormGenerator.FormFiller;
 
-namespace FormGenerator
+namespace FormGenerator.FormBuilder
 {
     public class TableSection<T> : FormSection<T>
     {
-        
-        public Table FormTable { get; set; }
-
+        public Table FormTable { get;} = new Table();
         /// <summary>
         /// Tworzenie pustej formatki na podstawie typu.
         /// </summary>
         public TableSection() { }
 
-        public override IFinishedSection CreateForm()
+        public override void CreateForm()
         {
-            if (this.FormTable is null)
-            {
-                FormTable = new Table();
-            }
-            CreateTableHeader();
-            CreateTableRows();
-            return this;
+            FormTable.Rows.Add(CreateTableHeaderRow());
+            FormTable.Rows.AddRange(CreateTableRows().ToArray());
+            this.Controls.Add(FormTable);
+        }
+
+        public override void FillControls(T @object)
+        {
+            var fieldFiller = new ControlsFiller<T>(@object);
+
+            fieldFiller.Fill(ControlsAdded);
         }
 
         /// <summary>
         /// Tworzenie nagłówka formularza.
         /// </summary>
-        private void CreateTableHeader()
+        private TableHeaderRow CreateTableHeaderRow()
         {
-            var headerName = typeof(T).GetCustomAttribute<HeaderAttribute>()?.Name;
-            if (headerName is null)
-            {
-                throw new ArgumentNullException(nameof(headerName), $"Class for building dynamically have to has {nameof(HeaderAttribute)}");
-            }
+            var headerName = HeaderAttribute.Name;
             var headerRow = new TableHeaderRow();
             headerRow.Cells.Add(new TableCell() {ID = "formHeader" + headerName.Trim(), Text = headerName, ColumnSpan = 2});
             this.FormTable.Rows.AddAt(0,headerRow);
+            return headerRow;
         }
         
-
-
         /// <summary>
         /// Generuje niewypełnione kontrolki
         /// </summary>
-        private void CreateTableRows()
+        private IEnumerable<TableRow> CreateTableRows()
         {
             foreach (var fieldAttribute in FieldsAttributes)
             {
@@ -70,9 +61,8 @@ namespace FormGenerator
                     valueCell.Controls.Add(CreateDataFieldControl(dataFieldAttribute));
                 }
                 row.Cells.Add(valueCell);
-                this.FormTable.Rows.Add(row);
+                yield return row;
             }
-            this.Controls.Add(FormTable);
         }
 
         private Control CreateDataFieldControl(DataFieldAttribute dataFieldAttribute)
@@ -87,10 +77,10 @@ namespace FormGenerator
                     controlToAdd = new ListView();
                     break;
                 case ControlDataType.DropDownList:
-                    controlToAdd = new DropDownList();
+                    controlToAdd = WebFormsHelper.DropDownListHelper.DropDownListFromEnum<ControlDataType>();
                     break;
                 case ControlDataType.PageWithList:
-                    
+                    controlToAdd = new Button();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -112,10 +102,10 @@ namespace FormGenerator
                     controlToAdd = new TextBox();
                     break;
                 case VariableType.Int:
-                    controlToAdd = new TextBox();
+                    controlToAdd = new TextBox(){TextMode = TextBoxMode.Number};
                     break;
                 case VariableType.Nip:
-                    controlToAdd = new TextBox(){TextMode = TextBoxMode.Number};
+                    controlToAdd = new TextBox(){TextMode = TextBoxMode.Color, };
                     break;
                 case VariableType.Bool:
                     controlToAdd = new CheckBox();

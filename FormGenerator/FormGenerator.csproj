@@ -49,23 +49,28 @@
     <Compile Include="Attributes\FieldAttribute.cs" />
     <Compile Include="Attributes\NormalFieldAttribute.cs" />
     <Compile Include="Attributes\HeaderAttribute.cs" />
-    <Compile Include="ButtonsSection.cs" />
-    <Compile Include="ControlFiller.cs" />
-    <Compile Include="ControlsHelper.cs" />
-    <Compile Include="FieldFiller.cs" />
+    <Compile Include="FieldHelper.cs" />
+    <Compile Include="FormBuilder\ButtonsSection.cs" />
+    <Compile Include="FormBuilder\FormSection.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormBuilder\TableSection.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormFiller\ControlFiller.cs" />
+    <Compile Include="FormFiller\ControlsFiller.cs" />
+    <Compile Include="FormFiller\IControlFiller.cs" />
     <Compile Include="FormGenerator.cs" />
-    <Compile Include="FormSection.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="IControlFiller.cs" />
-    <Compile Include="IFinishedSection.cs" />
-    <Compile Include="TableSection.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WebFormsHelper\WebFormsHelper.csproj">
+      <Project>{eeaf60ea-d27b-4817-91a9-fdfbe4e88051}</Project>
+      <Name>WebFormsHelper</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -2,6 +2,7 @@
 using System.Web.UI;
 using DynamicTest.Models;
 using FormGenerator;
+using FormGenerator.FormBuilder;
 
 namespace DynamicTest.Tests
 {
@@ -12,8 +13,8 @@ namespace DynamicTest.Tests
            dynamicPH.Controls.Add(new FormGenerator<User>()
                 .AddSection(new TableSection<User>())
                 .AddSection(new ButtonsSection<User>())
-                .FillWithData(new User("Pietrek", "Zylka", Rola.Klient, true, 39))
-                .CreateForm());
+                .CreateForms()
+                .FillWithData(new User("Pietrek", "Zylka", Rola.Klient, true, 39)));
         }
     }
 }
