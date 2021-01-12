@@ -13,13 +13,15 @@ namespace FormGenerator
     {
         public FormGenerator()
         {
-            Sections = new List<FormSection<T>>();
+            _sections = new List<FormSection<T>>();
         }
 
-        private List<FormSection<T>> Sections { get; }
+        private readonly List<FormSection<T>> _sections;
+        private readonly  List<FormSection<T>> _sectionsCreated = new List<FormSection<T>>();
+
         public FormGenerator<T> AddSection(FormSection<T> section)
         {
-            Sections.Add(section);
+            _sections.Add(section);
             return this;
         }
 
@@ -27,27 +29,18 @@ namespace FormGenerator
         public FormGenerator<T> CreateForms()
         {
             List<Control> controlsToAdd = new List<Control>();
-            foreach (var section in Sections)
+            foreach (var section in _sections)
             {
                 section.CreateForm();
-                controlsToAdd.AddRange(section.Controls.Cast<Control>());
+                this.Controls.Add(section);
             }
-            AddControlsToFormGenerator(controlsToAdd);
             return this;
-        }
-
-        private void AddControlsToFormGenerator(IEnumerable<Control> controlsToAdd)
-        {
-            foreach (var control in controlsToAdd)
-            {
-                this.Controls.Add(control);
-            }
         }
 
 
         public FormGenerator<T> FillWithData(T @object)
         {
-            foreach (var section in Sections)
+            foreach (var section in _sections)
             {
                 section.FillControls(@object);
             }

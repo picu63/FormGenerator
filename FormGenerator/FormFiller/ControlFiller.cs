@@ -8,12 +8,12 @@ namespace FormGenerator.FormFiller
     {
         public void FillTextBox(TextBox textBox, string text)
         {
-            throw new System.NotImplementedException();
+            textBox.Text = text;
         }
 
         public void FillCheckBox(CheckBox checkBox, bool isChecked)
         {
-            throw new System.NotImplementedException();
+            checkBox.Checked = isChecked;
         }
 
         public void FillDropDownList(DropDownList dropDownList, IEnumerable<KeyValuePair<int, string>> indexValuePairs)
@@ -23,7 +23,7 @@ namespace FormGenerator.FormFiller
 
         public void FillRadioButtons(RadioButtonList radioButtonList, int selectedIndex)
         {
-            throw new System.NotImplementedException();
+            
         }
     }
 }
