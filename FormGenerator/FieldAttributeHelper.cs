@@ -4,7 +4,7 @@ using FormGenerator.Attributes;
 
 namespace FormGenerator
 {
-    public static class FieldHelper
+    public static class FieldAttributeHelper
     {
         public static object GetValue<T>(T o, string controlId)
         {

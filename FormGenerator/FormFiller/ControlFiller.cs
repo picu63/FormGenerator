@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting;
 using System.Web.UI.WebControls;
 
 namespace FormGenerator.FormFiller
@@ -16,14 +18,21 @@ namespace FormGenerator.FormFiller
             checkBox.Checked = isChecked;
         }
 
-        public void FillDropDownList(DropDownList dropDownList, IEnumerable<KeyValuePair<int, string>> indexValuePairs)
+        public void FillDropDownList(DropDownList dropDownList, Dictionary<string, string> indexValuePairs)
         {
-            var sortedPairs = indexValuePairs.OrderBy(p => p.Key);
+            indexValuePairs
+                .OrderBy(p => p.Key).ToList()
+                .ForEach((pair => dropDownList.Items.Add(new ListItem(pair.Key, pair.Value))));
         }
 
         public void FillRadioButtons(RadioButtonList radioButtonList, int selectedIndex)
         {
-            
+            throw new NotImplementedException();
+        }
+
+        public void FillListView(ListView listView, List<string> listViewItems)
+        {
+            throw new NotImplementedException();
         }
     }
 }

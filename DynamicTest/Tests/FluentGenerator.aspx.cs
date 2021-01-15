@@ -2,7 +2,7 @@
 using System.Web.UI;
 using DynamicTest.Models;
 using FormGenerator;
-using FormGenerator.FormBuilder;
+using FormGenerator.FormSections;
 
 namespace DynamicTest.Tests
 {
@@ -14,7 +14,7 @@ namespace DynamicTest.Tests
                 .AddSection(new TableSection<User>())
                 .AddSection(new ButtonsSection<User>())
                 .CreateForms()
-                .FillWithData(new User("Pietrek", "Zylka", Rola.Klient, true, 39)));
+                .FillWithData(new User("Pietrek", "Zylka", Rola.Administrator, true, 39)));
         }
     }
 }

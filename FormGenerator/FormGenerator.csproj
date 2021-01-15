@@ -49,15 +49,12 @@
     <Compile Include="Attributes\FieldAttribute.cs" />
     <Compile Include="Attributes\NormalFieldAttribute.cs" />
     <Compile Include="Attributes\HeaderAttribute.cs" />
-    <Compile Include="FieldHelper.cs" />
-    <Compile Include="FormBuilder\ButtonsSection.cs" />
-    <Compile Include="FormBuilder\FormSection.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="FormBuilder\TableSection.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
+    <Compile Include="FieldAttributeHelper.cs" />
+    <Compile Include="FormSections\ButtonsSection.cs" />
+    <Compile Include="FormSections\FormSection.cs" />
+    <Compile Include="FormSections\TableSection.cs" />
     <Compile Include="FormFiller\ControlFiller.cs" />
+    <Compile Include="FormFiller\ControlSelector.cs" />
     <Compile Include="FormFiller\ControlsFiller.cs" />
     <Compile Include="FormFiller\IControlFiller.cs" />
     <Compile Include="FormGenerator.cs" />

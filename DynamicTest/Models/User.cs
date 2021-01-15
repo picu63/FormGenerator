@@ -27,6 +27,8 @@ namespace DynamicTest.Models
 
         [DataField("userRola", "Rola", ControlDataType.DropDownList)]
         public Rola Rola { get; set; }
+        [DataField("userParents", "Parents", ControlDataType.ListView)]
+        public List<string> Parents { get; set; } = new List<string>(){"Janina Kosogłów", "Antonii Kosogłów"};
         [NormalField("IsMale?","Meżczyzna?", VariableType.Bool)]
         public bool IsMale { get; set; }
         [NormalField("PhoneNumber","Numer", VariableType.Nip)]

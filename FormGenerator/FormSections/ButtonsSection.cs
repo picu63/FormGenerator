@@ -1,8 +1,6 @@
-using System.Linq;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace FormGenerator.FormBuilder
+namespace FormGenerator.FormSections
 {
     public class ButtonsSection<T>:FormSection<T>
     {

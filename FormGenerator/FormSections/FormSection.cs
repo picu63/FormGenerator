@@ -6,7 +6,7 @@ using System.Web.UI;
 using FormGenerator.Attributes;
 using WebFormsHelper;
 
-namespace FormGenerator.FormBuilder
+namespace FormGenerator.FormSections
 {
     public abstract class FormSection<T> : Control
     {

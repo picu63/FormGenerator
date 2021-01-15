@@ -6,7 +6,7 @@ using System.Web.UI.WebControls;
 using FormGenerator.Attributes;
 using FormGenerator.FormFiller;
 
-namespace FormGenerator.FormBuilder
+namespace FormGenerator.FormSections
 {
     public class TableSection<T> : FormSection<T>
     {
@@ -105,7 +105,7 @@ namespace FormGenerator.FormBuilder
                     controlToAdd = new TextBox(){TextMode = TextBoxMode.Number};
                     break;
                 case VariableType.Nip:
-                    controlToAdd = new TextBox(){TextMode = TextBoxMode.Color, };
+                    controlToAdd = new TextBox(){TextMode = TextBoxMode.SingleLine, MaxLength = 10};
                     break;
                 case VariableType.Bool:
                     controlToAdd = new CheckBox();
