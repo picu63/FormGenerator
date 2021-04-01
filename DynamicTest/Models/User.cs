@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.UI.WebControls;
 using FormGenerator.Attributes;
 
 namespace DynamicTest.Models
@@ -25,15 +26,19 @@ namespace DynamicTest.Models
         [NormalField("UserLastName", "Last name",VariableType.String)]
         public string LastName { get; set; }
 
-        [DataField("userRola", "Rola", ControlDataType.DropDownList)]
+        [DataField("userRola", "Rola", ControlDataType.DropDownList, new [] { "First Value", "Second Value" })]
         public Rola Rola { get; set; }
-        [DataField("userParents", "Parents", ControlDataType.ListView)]
+        [DataField("userParents", "Parents", ControlDataType.ListBox, new[] { "Value1", "Values2" })]
         public List<string> Parents { get; set; } = new List<string>(){"Janina Kosogłów", "Antonii Kosogłów"};
         [NormalField("IsMale?","Meżczyzna?", VariableType.Bool)]
         public bool IsMale { get; set; }
         [NormalField("PhoneNumber","Numer", VariableType.Nip)]
         public int Number { get; set; }
+        [DataField("provilance", "Województwo", ControlDataType.PageWithList, new []{"śląskie", "małopolskie", "opolskie", "mazowieckie"})]
+        public List<string> Provilance { get; set; }
 
+        [CustomField("customId", "custom name", typeof(Button))]
+        public object TestObject { get; set; }
         public string Testowy { get; set; }
     }
 

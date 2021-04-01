@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using FormGenerator.Attributes;
 using FormGenerator.FormFiller;
+using WebFormsHelper;
 
 namespace FormGenerator.FormSections
 {
@@ -15,7 +17,7 @@ namespace FormGenerator.FormSections
         /// Tworzenie pustej formatki na podstawie typu.
         /// </summary>
         public TableSection() { }
-
+        
         public override void CreateForm()
         {
             FormTable.Rows.Add(CreateTableHeaderRow());
@@ -60,6 +62,10 @@ namespace FormGenerator.FormSections
                 {
                     valueCell.Controls.Add(CreateDataFieldControl(dataFieldAttribute));
                 }
+                else if (fieldAttribute is CustomFieldAttribute customFieldAttribute)
+                {
+                    valueCell.Controls.Add(customFieldAttribute.Control);
+                }
                 row.Cells.Add(valueCell);
                 yield return row;
             }
@@ -67,20 +73,24 @@ namespace FormGenerator.FormSections
 
         private Control CreateDataFieldControl(DataFieldAttribute dataFieldAttribute)
         {
-            var tableCell = new TableCell();
-            var controlToAdd = new Control();
-            
+            Control controlToAdd;
+            if (!dataFieldAttribute.Values.Any()) throw new ArgumentException("Collection is empty", $"{nameof(dataFieldAttribute)}.{nameof(dataFieldAttribute.Values)}");
             var controlDataType = dataFieldAttribute.ControlDataType;
             switch (controlDataType)
             {
-                case ControlDataType.ListView:
-                    controlToAdd = new ListView();
+                case ControlDataType.ListBox:
+                    ListBox listBox = new ListBox();
+                    ListHelper.Fill(listBox, dataFieldAttribute.Values);
+                    controlToAdd = listBox;
                     break;
                 case ControlDataType.DropDownList:
-                    controlToAdd = WebFormsHelper.DropDownListHelper.DropDownListFromEnum<ControlDataType>();
+                    var dropDownList = new DropDownList();
+                    ListHelper.Fill(dropDownList, dataFieldAttribute.Values);
+                    controlToAdd = dropDownList;
                     break;
                 case ControlDataType.PageWithList:
-                    controlToAdd = new Button();
+                    // TODO przejście na nowa strona z wyborem pozycji z listy
+                    controlToAdd = new Button(){Text = "Wybierz", OnClientClick = $"javascript: alert('{nameof(ControlDataType.PageWithList)}: Ta opcja nie jest jeszcze dostępna.')"};
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

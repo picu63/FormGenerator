@@ -9,10 +9,15 @@ namespace FormGenerator.Attributes
 {
     public class CustomFieldAttribute : FieldAttribute
     {
-        public Control CustomControl { get; set; }
-        public CustomFieldAttribute(string id, string name, Control customControl) : base(id, name)
+        public Control Control { get; set; }
+        public CustomFieldAttribute(string id, string name, Type controlType) : base(id, name)
         {
-            CustomControl = customControl;
+            if (!controlType.IsSubclassOf(typeof(Control)))
+            {
+                throw new ArgumentException("Given type not derrived control");
+            }
+
+            Control = (Control) Activator.CreateInstance(controlType);
         }
     }
 }

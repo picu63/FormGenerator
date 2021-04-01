@@ -5,7 +5,7 @@ using System.Web.UI.WebControls;
 
 namespace WebFormsHelper
 {
-    public static class DropDownListHelper
+    public static class ListHelper
     {
         public static DropDownList DropDownListFromEnum<T>() where T : Enum
         {
@@ -17,6 +17,14 @@ namespace WebFormsHelper
                 ddl.Items.Add(ddlItem);
             }
             return ddl;
+        }
+
+        public static void Fill(ListControl ddl, object[] objects)
+        {
+            foreach (var o in objects)
+            {
+                ddl.Items.Add(o.ToString());
+            }
         }
     }
 }
