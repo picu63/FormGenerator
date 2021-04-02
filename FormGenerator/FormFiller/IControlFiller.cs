@@ -9,6 +9,6 @@ namespace FormGenerator.FormFiller
         void FillCheckBox(CheckBox checkBox, bool isChecked);
         void FillDropDownList(DropDownList dropDownList, Dictionary<string, string> indexValuePairs);
         void FillRadioButtons(RadioButtonList radioButtonList, int selectedIndex);
-        void FillListView(ListView listView, List<string> listViewItems);
+        void FillListBox(ListBox listBox, List<string> listViewItems);
     }
 }

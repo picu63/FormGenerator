@@ -23,7 +23,7 @@ namespace FormGenerator.Attributes
         /// </summary>
         /// <param name="id">Unique identifier.</param>
         /// <param name="name">Field name.</param>
-        public FieldAttribute(string id, string name)
+        protected FieldAttribute(string id, string name)
         {
             Id = id;
             Name = name;

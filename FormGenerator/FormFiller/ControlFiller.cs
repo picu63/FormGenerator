@@ -30,7 +30,7 @@ namespace FormGenerator.FormFiller
             throw new NotImplementedException();
         }
 
-        public void FillListView(ListView listView, List<string> listViewItems)
+        public void FillListBox(ListBox listBox, List<string> listViewItems)
         {
             throw new NotImplementedException();
         }

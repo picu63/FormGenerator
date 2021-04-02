@@ -10,14 +10,13 @@ using WebFormsHelper;
 
 namespace FormGenerator.FormSections
 {
+    /// <summary>
+    /// Tworzenie pustej formatki na podstawie typu.
+    /// </summary>
     public class TableSection<T> : FormSection<T>
     {
         public Table FormTable { get;} = new Table();
-        /// <summary>
-        /// Tworzenie pustej formatki na podstawie typu.
-        /// </summary>
-        public TableSection() { }
-        
+
         public override void CreateForm()
         {
             FormTable.Rows.Add(CreateTableHeaderRow());
@@ -66,9 +65,38 @@ namespace FormGenerator.FormSections
                 {
                     valueCell.Controls.Add(customFieldAttribute.Control);
                 }
+                else if (fieldAttribute is EnumFieldAttribute enumFieldAttribute)
+                {
+                    valueCell.Controls.Add(CreateEnumFieldAttribute(enumFieldAttribute));
+                }
                 row.Cells.Add(valueCell);
                 yield return row;
             }
+        }
+
+        private Control CreateEnumFieldAttribute(EnumFieldAttribute enumFieldAttribute)
+        {
+            Control controlToAdd;
+            var enumType = base.GetPropertyByFieldId(enumFieldAttribute.Id).PropertyType;
+            var enumItems = enumType.GetFields().Select(f=> f.Name).Skip(1).Select(enumName => new ListItem(enumName)).ToArray();
+            switch (enumFieldAttribute.ControlDataType)
+            {
+                case ControlDataType.ListBox:
+                    var listBox = new ListBox();
+                    listBox.Items.AddRange(enumItems);
+                    return listBox;
+                    break;
+                case ControlDataType.DropDownList:
+                    var dropDownList = new DropDownList();
+                    dropDownList.Items.AddRange(enumItems);
+                    controlToAdd = dropDownList;
+                    break;
+                case ControlDataType.PageWithList:
+                    throw new ArgumentException($"{nameof(ControlDataType.PageWithList)} is not supported.");
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+            return controlToAdd;
         }
 
         private Control CreateDataFieldControl(DataFieldAttribute dataFieldAttribute)
@@ -80,6 +108,7 @@ namespace FormGenerator.FormSections
             {
                 case ControlDataType.ListBox:
                     ListBox listBox = new ListBox();
+                    listBox.Enabled = false;
                     ListHelper.Fill(listBox, dataFieldAttribute.Values);
                     controlToAdd = listBox;
                     break;

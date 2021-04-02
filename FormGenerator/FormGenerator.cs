@@ -17,7 +17,6 @@ namespace FormGenerator
         }
 
         private readonly List<FormSection<T>> _sections;
-        private readonly  List<FormSection<T>> _sectionsCreated = new List<FormSection<T>>();
 
         public FormGenerator<T> AddSection(FormSection<T> section)
         {
@@ -26,9 +25,8 @@ namespace FormGenerator
         }
 
 
-        public FormGenerator<T> CreateForms()
+        public FormGenerator<T> CreateForm()
         {
-            List<Control> controlsToAdd = new List<Control>();
             foreach (var section in _sections)
             {
                 section.CreateForm();

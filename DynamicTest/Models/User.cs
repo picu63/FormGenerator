@@ -27,7 +27,7 @@ namespace DynamicTest.Models
         [NormalField("UserLastName", "Last name",VariableType.String)]
         public string LastName { get; set; }
 
-        [DataField("userRola", "Rola", ControlDataType.DropDownList, new [] { "First Value", "Second Value" })]
+        [EnumField("userRola", "Rola", ControlDataType.ListBox)]
         public Rola Rola { get; set; }
         [DataField("userParents", "Parents", ControlDataType.ListBox, new[] { "Value1", "Values2" })]
         public List<string> Parents { get; set; } = new List<string>(){"Janina Kosogłów", "Antonii Kosogłów"};
@@ -44,11 +44,11 @@ namespace DynamicTest.Models
 
     public enum Rola
     {
-        [EnumField("enumAdministrator","Super administrator")]
-        Administrator,
-        [EnumField("enumKierownik","Kierownik oddziału")]
-        Kierownik,
-        [EnumField("enumKlient","Klient oddziału")]
-        Klient
+        [EnumValueField("enumAdministrator","Super administrator")]
+        Administrator = 0,
+        [EnumValueField("enumKierownik","Kierownik oddziału")]
+        Kierownik = 1,
+        [EnumValueField("enumKlient","Klient oddziału")]
+        Klient = 2,
     }
 }

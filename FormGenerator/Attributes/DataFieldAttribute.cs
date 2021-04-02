@@ -11,7 +11,6 @@ namespace FormGenerator.Attributes
         public ControlDataType ControlDataType { get; }
         public string[] Values { get; }
         public string PageListLocation { get; }
-        public string PlaceHolderId { get; }
 
         /// <summary>
         /// Adds identifier 
@@ -19,24 +18,24 @@ namespace FormGenerator.Attributes
         /// <param name="id">Unique identifier.</param>
         /// <param name="name">Field name.</param>
         /// <param name="controlDataType">Type of Control to print values.</param>
-        /// <param name="values">Default values - if not set to </param>
-        public DataFieldAttribute(string id, string name, ControlDataType controlDataType, string[] values) : base(id, name)
+        /// <param name="defaultValues">Default values - if property value not set</param>
+        public DataFieldAttribute(string id, string name, ControlDataType controlDataType, string[] defaultValues) : base(id, name)
         {
             ControlDataType = controlDataType;
-            Values = values;
+            Values = defaultValues;
         }
 
         /// <summary>
-        /// Adds identifier and name of data structure with 
+        /// Adds identifier and name of data structure with aspx file location
         /// </summary>
         /// <param name="id">Unique identifier.</param>
         /// <param name="name">Field name.</param>
-        /// <param name="controlDataType">Type of Control to print values.</param>
-        /// <param name="values">Default values - if not set to </param>
-        public DataFieldAttribute(string id, string name, string pageListLocation, string placeHolderId) : base(id, name)
+        /// <param name="pageListLocation"></param>
+        /// <param name="placeHolderId"></param>
+        public DataFieldAttribute(string id, string name, string pageListLocation) : base(id, name)
         {
             PageListLocation = pageListLocation;
-            PlaceHolderId = placeHolderId;
+            throw new NotImplementedException();
         }
     }
 

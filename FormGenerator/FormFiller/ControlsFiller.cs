@@ -5,7 +5,7 @@ using System.Web.UI.WebControls;
 
 namespace FormGenerator.FormFiller
 {
-    public class ControlsFiller<T> : IFieldFiller
+    public class ControlsFiller<T>
     {
         private readonly T _object;
 
@@ -27,7 +27,7 @@ namespace FormGenerator.FormFiller
         /// Uzupełnia 
         /// </summary>
         /// <param name="control"></param>
-        public void Fill(Control control, object value)
+        private void Fill(Control control, object value)
         {
             var controlFiller = new ControlFiller();
             var controlSelector = new ControlSelector();
@@ -51,11 +51,5 @@ namespace FormGenerator.FormFiller
                 }
             }
         }
-    }
-
-    public interface IFieldFiller
-    {
-        void Fill(IEnumerable<Control> controls);
-        void Fill(Control controls, object value);
     }
 }

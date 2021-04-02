@@ -7,7 +7,7 @@ namespace FormGenerator.FormFiller
         
         public void SelectDropDownList(DropDownList dropDownList, int index)
         {
-            dropDownList.Items[index].Selected = true;
+            dropDownList.SelectedIndex = index;
         }
 
         public void SelectRadioButton(RadioButtonList radioButtonList, int index)

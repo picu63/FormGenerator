@@ -13,7 +13,7 @@ namespace DynamicTest.Tests
            dynamicPH.Controls.Add(new FormGenerator<User>()
                 .AddSection(new TableSection<User>())
                 .AddSection(new ButtonsSection<User>())
-                .CreateForms()
+                .CreateForm()
                 .FillWithData(new User("Pietrek", "Zylka", Rola.Administrator, true, 39)));
         }
     }

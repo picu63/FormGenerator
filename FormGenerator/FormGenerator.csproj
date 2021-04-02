@@ -46,6 +46,7 @@
     <Compile Include="Attributes\CustomFieldAttribute.cs" />
     <Compile Include="Attributes\DataFieldAttribute.cs" />
     <Compile Include="Attributes\EnumFieldAttribute.cs" />
+    <Compile Include="Attributes\EnumValueFieldAttribute.cs" />
     <Compile Include="Attributes\FieldAttribute.cs" />
     <Compile Include="Attributes\NormalFieldAttribute.cs" />
     <Compile Include="Attributes\HeaderAttribute.cs" />
