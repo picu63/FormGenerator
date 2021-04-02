@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
+using DynamicTest.CustomControls;
 using FormGenerator.Attributes;
 
 namespace DynamicTest.Models
@@ -36,10 +37,9 @@ namespace DynamicTest.Models
         public int Number { get; set; }
         [DataField("provilance", "Województwo", ControlDataType.PageWithList, new []{"śląskie", "małopolskie", "opolskie", "mazowieckie"})]
         public List<string> Provilance { get; set; }
-
-        [CustomField("customId", "custom name", typeof(Button))]
+        [CustomField("customId", "custom name", typeof(MyButton), "Test Button")]
         public object TestObject { get; set; }
-        public string Testowy { get; set; }
+        public string NotVisibleField { get; set; }
     }
 
     public enum Rola

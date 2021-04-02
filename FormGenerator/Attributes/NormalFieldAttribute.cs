@@ -15,12 +15,12 @@ namespace FormGenerator.Attributes
         public string DefaultValue { get; }
 
         /// <summary>
-        /// Pole w którym określa się właściwości wyświetlonych danych
+        /// Field with single value.
         /// </summary>
-        /// <param name="name">Nazwa pola.</param>
-        /// <param name="variableType">Typ zmiennej.</param>
-        /// <param name="defaultValue">Domyślna wartość w przypadku jej braku.</param>
-        /// <param name="id">Unikalny identyfikator pola.</param>
+        /// <param name="id">Unique identifier.</param>
+        /// <param name="name">Field name.</param>
+        /// <param name="variableType">Variable type.</param>
+        /// <param name="defaultValue">Default value if no value is set.</param>
         public NormalFieldAttribute(string id, string name, VariableType variableType = VariableType.Unknown, string defaultValue = "") : base(id, name)
         {
             VariableType = variableType;
@@ -34,6 +34,7 @@ namespace FormGenerator.Attributes
         String,
         Int,
         Bool,
+        PhoneNumber,
         Nip,
     }
 }

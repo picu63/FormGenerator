@@ -4,9 +4,9 @@ using FormGenerator.Attributes;
 
 namespace FormGenerator
 {
-    public static class FieldAttributeHelper
+    internal static class FieldAttributeHelper
     {
-        public static object GetValue<T>(T o, string controlId)
+        internal static object GetValue<T>(T o, string controlId)
         {
             var propertyInfo = typeof(T).GetProperties()
                 .First(p => p.GetCustomAttribute<FieldAttribute>().Id == controlId);
