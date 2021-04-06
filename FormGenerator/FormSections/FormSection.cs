@@ -38,7 +38,7 @@ namespace FormGenerator.FormSections
         /// <summary>
         /// Uzupełnia wszystkie dodane kontrolki o podany obiekt.
         /// </summary>
-        public abstract void FillControls(T @object);
+        public virtual void FillControls(T @object) { }
 
         protected PropertyInfo GetPropertyByFieldId(string id) => typeof(T).GetProperties().First(p =>
         {

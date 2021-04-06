@@ -37,7 +37,7 @@ namespace DynamicTest.Models
         public int Number { get; set; }
         [DataField("provilance", "Województwo", ControlDataType.PageWithList, new []{"śląskie", "małopolskie", "opolskie", "mazowieckie"})]
         public List<string> Provilance { get; set; }
-        [CustomField("customId", "custom name", typeof(MyButton), "Test Button")]
+        [CustomField("customId", "Custom control", typeof(MyButton), "Custom control")]
         public object TestObject { get; set; }
         public string NotVisibleField { get; set; }
     }

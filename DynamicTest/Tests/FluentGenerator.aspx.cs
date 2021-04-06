@@ -11,7 +11,7 @@ namespace DynamicTest.Tests
         protected void Page_Load(object sender, EventArgs e)
         {
            dynamicPH.Controls.Add(new FormGenerator<User>()
-                .AddSection(new TableSection<User>())
+                .AddSection(new FieldsSection<User>())
                 .AddSection(new ButtonsSection<User>())
                 .CreateForm()
                 .FillWithData(new User("Pietrek", "Zylka", Rola.Administrator, true, 39)));

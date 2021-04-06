@@ -25,7 +25,7 @@ namespace FormGenerator.Attributes
         /// <param name="name">Field name.</param>
         protected FieldAttribute(string id, string name)
         {
-            Id = id;
+            Id = id ?? throw new ArgumentNullException(nameof(id), "Identifier cannot be null");
             Name = name;
         }
     }

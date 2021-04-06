@@ -53,7 +53,7 @@
     <Compile Include="FieldAttributeHelper.cs" />
     <Compile Include="FormSections\ButtonsSection.cs" />
     <Compile Include="FormSections\FormSection.cs" />
-    <Compile Include="FormSections\TableSection.cs" />
+    <Compile Include="FormSections\FieldsSection.cs" />
     <Compile Include="FormFiller\ControlFiller.cs" />
     <Compile Include="FormFiller\ControlSelector.cs" />
     <Compile Include="FormFiller\ControlsFiller.cs" />

@@ -13,7 +13,7 @@ namespace FormGenerator.FormSections
     /// <summary>
     /// Tworzenie pustej formatki na podstawie typu.
     /// </summary>
-    public class TableSection<T> : FormSection<T>
+    public class FieldsSection<T> : FormSection<T>
     {
         public Table FormTable { get;} = new Table();
 
@@ -78,7 +78,7 @@ namespace FormGenerator.FormSections
         {
             Control controlToAdd;
             var enumType = base.GetPropertyByFieldId(enumFieldAttribute.Id).PropertyType;
-            var enumItems = enumType.GetFields().Select(f=> f.Name).Skip(1).Select(enumName => new ListItem(enumName)).ToArray();
+            var enumItems = Enum.GetNames(enumType).Select(enumName => new ListItem(enumName)).ToArray();
             switch (enumFieldAttribute.ControlDataType)
             {
                 case ControlDataType.ListBox:

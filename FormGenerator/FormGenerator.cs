@@ -11,6 +11,7 @@ namespace FormGenerator
 {
     public class FormGenerator<T> : Control
     {
+        public ControlCollection Sections => this.Controls;
         public FormGenerator()
         {
             _sections = new List<FormSection<T>>();
@@ -30,7 +31,7 @@ namespace FormGenerator
             foreach (var section in _sections)
             {
                 section.CreateForm();
-                this.Controls.Add(section);
+                this.Sections.Add(section);
             }
             return this;
         }

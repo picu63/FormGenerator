@@ -14,7 +14,7 @@ namespace DynamicTest.Tests
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            var modelGenerator = new TableSection<User>();
+            var modelGenerator = new FieldsSection<User>();
             modelGenerator.CreateForm();
             dynamicPlaceHolder.Controls.Add(modelGenerator);
         }
