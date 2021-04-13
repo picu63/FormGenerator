@@ -19,13 +19,21 @@ namespace FormGenerator
 
         private readonly List<FormSection<T>> _sections;
 
+        /// <summary>
+        /// Adds custom sections to <see cref="FormGenerator{T}"/>.
+        /// </summary>
+        /// <param name="section"></param>
+        /// <returns></returns>
         public FormGenerator<T> AddSection(FormSection<T> section)
         {
             _sections.Add(section);
             return this;
         }
 
-
+        /// <summary>
+        /// Creates a form control with all subcontrols.
+        /// </summary>
+        /// <returns></returns>
         public FormGenerator<T> CreateForm()
         {
             foreach (var section in _sections)

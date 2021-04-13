@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using FormGenerator.Attributes;
 using WebFormsHelper;
 
@@ -11,8 +12,13 @@ namespace FormGenerator.FormSections
     public abstract class FormSection<T> : Control
     {
         protected IEnumerable<Control> ControlsAdded=>this.GetAllChildren()
-                .Where(c => FieldsAttributes.Select(f => f.Id).Contains(c.ID));
+                .Where(c =>
+                {
+                    var fieldAttributes = FieldsAttributes.ToList();
+                    return fieldAttributes.Select(f => f.Id).Contains(c.ID);
+                }).Distinct(); // Don't know why gets double controls in output
 
+        protected Control GetControlById(string id) => ControlsAdded.FirstOrDefault(c => c.ID == id);
         protected HeaderAttribute HeaderAttribute
         {
             get

@@ -26,9 +26,11 @@ namespace FormGenerator.FormSections
 
         public override void FillControls(T @object)
         {
-            var fieldFiller = new ControlsFiller<T>(@object);
-
-            fieldFiller.Fill(ControlsAdded);
+            var controlSelector = new ControlSelector();
+            var controlFiller = new ControlFiller();
+            var fieldFiller = new ControlsFiller<T>(@object, controlFiller, controlSelector);
+            var ca = ControlsAdded.ToList();
+            fieldFiller.Fill(ca);
         }
 
         /// <summary>
@@ -51,24 +53,28 @@ namespace FormGenerator.FormSections
             foreach (var fieldAttribute in FieldsAttributes)
             {
                 var row = new TableRow();
-                row.Cells.Add(new TableCell() {Text = fieldAttribute.Name});
-                var valueCell = new TableCell();
+                row.Cells.Add(new TableCell() {Text = fieldAttribute.Name, ID = fieldAttribute.Id + "NameId"});
+                var valueCell = new TableCell(){};
+                var controlToAddToValueCell = new Control() {ID = fieldAttribute.Id};
                 if (fieldAttribute is NormalFieldAttribute normalFieldAttribute)
                 { 
-                    valueCell.Controls.Add(CreateNormalValueControl(normalFieldAttribute));
+                    controlToAddToValueCell = CreateNormalValueControl(normalFieldAttribute);
                 }
                 else if (fieldAttribute is DataFieldAttribute dataFieldAttribute)
                 {
-                    valueCell.Controls.Add(CreateDataFieldControl(dataFieldAttribute));
+                    controlToAddToValueCell = CreateDataFieldControl(dataFieldAttribute);
                 }
                 else if (fieldAttribute is CustomFieldAttribute customFieldAttribute)
                 {
-                    valueCell.Controls.Add(customFieldAttribute.Control);
+                    controlToAddToValueCell = customFieldAttribute.Control;
                 }
                 else if (fieldAttribute is EnumFieldAttribute enumFieldAttribute)
                 {
-                    valueCell.Controls.Add(CreateEnumFieldAttribute(enumFieldAttribute));
+                    controlToAddToValueCell = CreateEnumFieldAttribute(enumFieldAttribute);
                 }
+
+                controlToAddToValueCell.ID = fieldAttribute.Id;
+                valueCell.Controls.Add(controlToAddToValueCell);
                 row.Cells.Add(valueCell);
                 yield return row;
             }
@@ -76,7 +82,7 @@ namespace FormGenerator.FormSections
 
         private Control CreateEnumFieldAttribute(EnumFieldAttribute enumFieldAttribute)
         {
-            Control controlToAdd;
+            Control controlToAdd = new Control(){ID = enumFieldAttribute.Id};
             var enumType = base.GetPropertyByFieldId(enumFieldAttribute.Id).PropertyType;
             var enumItems = Enum.GetNames(enumType).Select(enumName => new ListItem(enumName)).ToArray();
             switch (enumFieldAttribute.ControlDataType)
@@ -84,7 +90,7 @@ namespace FormGenerator.FormSections
                 case ControlDataType.ListBox:
                     var listBox = new ListBox();
                     listBox.Items.AddRange(enumItems);
-                    return listBox;
+                    controlToAdd = listBox;
                     break;
                 case ControlDataType.DropDownList:
                     var dropDownList = new DropDownList();
@@ -119,6 +125,7 @@ namespace FormGenerator.FormSections
                     break;
                 case ControlDataType.PageWithList:
                     // TODO przejście na nowa strona z wyborem pozycji z listy
+                    throw new NotImplementedException();
                     controlToAdd = new Button(){Text = "Wybierz", OnClientClick = $"javascript: alert('{nameof(ControlDataType.PageWithList)}: Ta opcja nie jest jeszcze dostępna.')"};
                     break;
                 default:
