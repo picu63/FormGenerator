@@ -7,21 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DynamicTest {
-    
-    
-    public partial class About {
-        
+namespace DynamicTest.Tests
+{
+
+
+    public partial class ValidationsFormForm
+    {
+
         /// <summary>
-        /// Master property.
+        /// dynamicPlaceHolder control.
         /// </summary>
         /// <remarks>
-        /// Auto-generated property.
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        public new DynamicTest.SiteMaster Master {
-            get {
-                return ((DynamicTest.SiteMaster)(base.Master));
-            }
-        }
+        protected global::System.Web.UI.WebControls.PlaceHolder dynamicPlaceHolder;
     }
 }

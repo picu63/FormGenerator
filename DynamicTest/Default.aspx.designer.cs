@@ -7,21 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DynamicTest {
-    
-    
-    public partial class _Default {
-        
-        /// <summary>
-        /// Master property.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated property.
-        /// </remarks>
-        public new DynamicTest.SiteMaster Master {
-            get {
-                return ((DynamicTest.SiteMaster)(base.Master));
-            }
-        }
+namespace DynamicTest
+{
+
+
+    public partial class _Default
+    {
     }
 }

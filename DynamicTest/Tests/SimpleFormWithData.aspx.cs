@@ -16,7 +16,8 @@ namespace DynamicTest.Tests
         {
             var modelGenerator = new FieldsSection<User>();
             modelGenerator.CreateForm();
-            modelGenerator.FillControls(new User("Piotr", "Nowak", Rola.Kierownik, true, 30));
+            var user = new User("Piotr", "Nowak", Rola.Kierownik, true, 30){Parents = new List<string>(){"janina","zbyszek"}};
+            modelGenerator.FillControls(user);
             dynamicPlaceHolder.Controls.Add(modelGenerator);
         }
     }

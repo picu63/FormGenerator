@@ -27,15 +27,15 @@ namespace DynamicTest.Models
         [NormalField("UserLastName", "Last name",VariableType.String)]
         public string LastName { get; set; }
 
-        [EnumField("userRola", "Rola", ControlDataType.ListBox)]
+        [EnumField("userRola", "Rola", ControlDataType.DropDownList, (int)Models.Rola.Kierownik)]
         public Rola Rola { get; set; }
-        [DataField("userParents", "Parents", ControlDataType.ListBox, new[] { "Value1", "Values2" })]
+        [DataField("userParents", "Parents", ControlDataType.ListBox, new[] { "Value1", "Value2" })]
         public List<string> Parents { get; set; } = new List<string>(){"Janina Kosogłów", "Antonii Kosogłów"};
         [NormalField("IsMale?","Meżczyzna?", VariableType.Bool)]
         public bool IsMale { get; set; }
         [NormalField("PhoneNumber","Numer", VariableType.Nip)]
         public int Number { get; set; }
-        [DataField("provilance", "Województwo", ControlDataType.PageWithList, new []{"śląskie", "małopolskie", "opolskie", "mazowieckie"})]
+        [DataField("provilance", "Województwo", ControlDataType.DropDownList, new []{"śląskie", "małopolskie", "opolskie", "mazowieckie"})]
         public List<string> Provilance { get; set; }
         [CustomField("customId", "Custom control", typeof(MyButton), "Custom control")]
         public object TestObject { get; set; }
