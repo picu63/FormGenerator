@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using FormGenerator.Attributes;
+using FormGenerator.FormGetter;
 using FormGenerator.FormSections;
 
 namespace FormGenerator
@@ -44,7 +45,11 @@ namespace FormGenerator
             return this;
         }
 
-
+        /// <summary>
+        /// Fills form with data from given object
+        /// </summary>
+        /// <param name="object"></param>
+        /// <returns></returns>
         public FormGenerator<T> FillWithData(T @object)
         {
             foreach (var section in _sections)
@@ -53,6 +58,18 @@ namespace FormGenerator
             }
 
             return this;
+        }
+
+        public T GetData()
+        {
+            var controlsGetter = new ControlsGetter<T>(new ControlGetter());
+            T @object = default;
+            foreach (var section in Sections.Cast<FormSection<T>>())
+            {
+                @object = controlsGetter.Get(section.ControlsAdded);
+            }
+
+            return @object;
         }
     }
 }

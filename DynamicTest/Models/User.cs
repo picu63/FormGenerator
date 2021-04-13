@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 using DynamicTest.CustomControls;
 using FormGenerator.Attributes;
@@ -14,13 +15,12 @@ namespace DynamicTest.Models
     public class User
     {
         public User() { }
-        public User(string firstName, string lastName, Rola rola, bool isMale, int number)
+        public User(string firstName, string lastName, Rola rola, bool isMale)
         {
             FirstName = firstName;
             LastName = lastName;
             Rola = rola;
             IsMale = isMale;
-            Number = number;
         }
         [NormalField("UserFirstName","First name", VariableType.String) ]
         public string FirstName { get; set; }
@@ -33,8 +33,9 @@ namespace DynamicTest.Models
         public List<string> Parents { get; set; } = new List<string>(){"Janina Kosogłów", "Antonii Kosogłów"};
         [NormalField("IsMale?","Meżczyzna?", VariableType.Bool)]
         public bool IsMale { get; set; }
-        [NormalField("PhoneNumber","Numer", VariableType.Nip)]
-        public int Number { get; set; }
+        //TODO obsługa textbox dla integer
+        //[NormalField("NipNumber","Numer NIP", VariableType.Nip)]
+        //public int NipNumber { get; set; }
         [DataField("provilance", "Województwo", ControlDataType.DropDownList, new []{"śląskie", "małopolskie", "opolskie", "mazowieckie"})]
         public List<string> Provilance { get; set; }
         [CustomField("customId", "Custom control", typeof(MyButton), "Custom control")]

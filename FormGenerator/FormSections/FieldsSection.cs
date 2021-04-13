@@ -83,7 +83,7 @@ namespace FormGenerator.FormSections
         private Control CreateEnumFieldAttribute(EnumFieldAttribute enumFieldAttribute)
         {
             Control controlToAdd = new Control(){ID = enumFieldAttribute.Id};
-            var enumType = base.GetPropertyByFieldId(enumFieldAttribute.Id).PropertyType;
+            var enumType = base.GetPropertyByFieldAttributeId(enumFieldAttribute.Id).PropertyType;
             var enumItems = Enum.GetNames(enumType).Select(enumName => new ListItem(enumName)).ToArray();
             switch (enumFieldAttribute.ControlDataType)
             {

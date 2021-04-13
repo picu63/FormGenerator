@@ -9,9 +9,12 @@ using WebFormsHelper;
 
 namespace FormGenerator.FormSections
 {
-    public abstract class FormSection<T> : Control
+    public abstract class FormSection<T> : Control, IFieldGetter
     {
-        protected IEnumerable<Control> ControlsAdded=>this.GetAllChildren()
+        /// <summary>
+        /// All data/value types controls
+        /// </summary>
+        public IEnumerable<Control> ControlsAdded=>this.GetAllChildren()
                 .Where(c =>
                 {
                     var fieldAttributes = FieldsAttributes.ToList();
@@ -19,6 +22,7 @@ namespace FormGenerator.FormSections
                 }).Distinct(); // Don't know why gets double controls in output
 
         protected Control GetControlById(string id) => ControlsAdded.FirstOrDefault(c => c.ID == id);
+        public FieldAttribute GetFieldAttributeById(string id) => FieldsAttributes.First(f => f.Id == id);
         protected HeaderAttribute HeaderAttribute
         {
             get
@@ -46,7 +50,7 @@ namespace FormGenerator.FormSections
         /// </summary>
         public virtual void FillControls(T @object) { }
 
-        protected PropertyInfo GetPropertyByFieldId(string id) => typeof(T).GetProperties().First(p =>
+        public PropertyInfo GetPropertyByFieldAttributeId(string id) => typeof(T).GetProperties().First(p =>
         {
             var fieldAttribute = p.GetCustomAttributes<FieldAttribute>().First();
             if (fieldAttribute.Id == id)
@@ -56,5 +60,11 @@ namespace FormGenerator.FormSections
 
             return false;
         });
+    }
+
+    public interface IFieldGetter
+    {
+        FieldAttribute GetFieldAttributeById(string id);
+        PropertyInfo GetPropertyByFieldAttributeId(string id);
     }
 }

@@ -5,4 +5,5 @@
     <h2><a href="Tests/SimpleFormWithData.aspx">Prosty formularz z danymi</a></h2>
     <h2><a href="Tests/FluentGenerator.aspx">Fluent form generator</a></h2>
     <h2><a href="Tests/ValidationsForm.aspx">Validation form</a></h2>
+    <h2><a href="Tests/GetDataTest.aspx">Get data</a></h2>
 </asp:Content>

@@ -53,6 +53,9 @@
     <Compile Include="Attributes\NormalFieldAttribute.cs" />
     <Compile Include="Attributes\HeaderAttribute.cs" />
     <Compile Include="FieldAttributeHelper.cs" />
+    <Compile Include="FormGetter\ControlGetter.cs" />
+    <Compile Include="FormGetter\ControlsGetter.cs" />
+    <Compile Include="FormGetter\IControlGetter.cs" />
     <Compile Include="FormSections\ButtonsSection.cs" />
     <Compile Include="FormSections\FormSection.cs" />
     <Compile Include="FormSections\FieldsSection.cs" />

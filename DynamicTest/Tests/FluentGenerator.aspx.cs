@@ -14,7 +14,7 @@ namespace DynamicTest.Tests
                 .AddSection(new FieldsSection<User>())
                 .AddSection(new ButtonsSection<User>())
                 .CreateForm()
-                .FillWithData(new User("Pietrek", "Zylka", Rola.Administrator, true, 39)));
+                .FillWithData(new User("Pietrek", "Zylka", Rola.Administrator, true)));
         }
     }
 }
