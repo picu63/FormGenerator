@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace FormGenerator.Attributes
 {
+    [AttributeUsage(AttributeTargets.Property)]
     public class DataFieldAttribute : FieldAttribute
     {
         public ControlDataType ControlDataType { get; }
@@ -39,7 +40,6 @@ namespace FormGenerator.Attributes
         }
     }
 
-    
     public enum ControlDataType
     {
         ListBox,

@@ -9,6 +9,7 @@ namespace FormGenerator.Attributes
     /// <summary>
     /// Attribute for each of enum value.
     /// </summary>
+    [AttributeUsage(AttributeTargets.Field)]
     public class EnumValueFieldAttribute : FieldAttribute
     {
         public EnumValueFieldAttribute(string id, string name) : base(id, name)

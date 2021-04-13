@@ -8,7 +8,10 @@ using System.Web.UI;
 
 namespace FormGenerator.Attributes
 {
-
+    /// <summary>
+    /// Main attribute for basics data
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Property)]
     public class NormalFieldAttribute : FieldAttribute
     {
         public VariableType VariableType { get; }

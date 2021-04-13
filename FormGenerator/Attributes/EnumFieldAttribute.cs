@@ -10,15 +10,19 @@ namespace FormGenerator.Attributes
     public class EnumFieldAttribute : FieldAttribute
     {
         public ControlDataType ControlDataType { get; }
+        public int DefaultEnum { get; }
 
         /// <summary>
         /// Adds identifier and custom name (e.g. with spaces) to enum constant.
         /// </summary>
         /// <param name="id">Unique identifier.</param>
         /// <param name="name">Field name.</param>
-        public EnumFieldAttribute(string id, string name, ControlDataType controlDataType) : base(id, name)
+        /// <param name="controlDataType">Type of control to select data</param>
+        /// <param name="defaultEnum"></param>
+        public EnumFieldAttribute(string id, string name, ControlDataType controlDataType, int defaultEnum) : base(id, name)
         {
             ControlDataType = controlDataType;
+            DefaultEnum = defaultEnum;
         }
     }
 }

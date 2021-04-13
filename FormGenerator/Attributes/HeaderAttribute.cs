@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace FormGenerator.Attributes
 {
+    [AttributeUsage(AttributeTargets.Class)]
     public class HeaderAttribute : Attribute
     {
         public HeaderAttribute(string name)

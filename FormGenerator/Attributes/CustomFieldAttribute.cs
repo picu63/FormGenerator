@@ -7,6 +7,7 @@ using System.Web.UI;
 
 namespace FormGenerator.Attributes
 {
+    [AttributeUsage(AttributeTargets.Property)]
     public class CustomFieldAttribute : FieldAttribute
     {
         public Control Control { get; }
