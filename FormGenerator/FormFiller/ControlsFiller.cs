@@ -5,16 +5,20 @@ using System.Web.UI.WebControls;
 
 namespace FormGenerator.FormFiller
 {
-    public class ControlsFiller<T>
+    internal class ControlsFiller<T>
     {
         private readonly T _object;
+        private readonly IControlFiller _controlFiller;
+        private readonly IControlSelector _controlSelector;
 
-        public ControlsFiller(T @object)
+        internal ControlsFiller(T @object, IControlFiller controlFiller, IControlSelector controlSelector)
         {
             _object = @object;
+            _controlFiller = controlFiller;
+            _controlSelector = controlSelector;
         }
 
-        public void Fill(IEnumerable<Control> controls)
+        internal void Fill(IEnumerable<Control> controls)
         {
             foreach (var control in controls)
             {
@@ -29,25 +33,23 @@ namespace FormGenerator.FormFiller
         /// <param name="control"></param>
         private void Fill(Control control, object value)
         {
-            var controlFiller = new ControlFiller();
-            var controlSelector = new ControlSelector();
             if (control is TextBox textBox)
             {
-                controlFiller.FillTextBox(textBox, value.ToString());
+                _controlFiller.FillTextBox(textBox, value.ToString());
             }
             else if (control is CheckBox checkBox)
             {
-                controlFiller.FillCheckBox(checkBox, bool.Parse(value.ToString()));
+                _controlFiller.FillCheckBox(checkBox, bool.Parse(value.ToString()));
             }
             else if (control is DropDownList dropDownList)
             {
                 if (value is ICollection<object> collection)
                 {
-                    controlFiller.FillDropDownList(dropDownList, new Dictionary<string, string>());
+                    _controlFiller.FillDropDownList(dropDownList, new Dictionary<string, string>());
                 }
                 else if(value is Enum @enum)
                 {
-                    controlSelector.SelectDropDownList(dropDownList, (int)value);
+                    _controlSelector.SelectDropDownList(dropDownList, (int)value);
                 }
             }
         }
