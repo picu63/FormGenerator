@@ -11,6 +11,7 @@ namespace FormGenerator.FormSections
 {
     public abstract class FormSection<T> : Control, IFieldGetter
     {
+        public Type GenericType => typeof(T);
         /// <summary>
         /// All data/value types controls
         /// </summary>

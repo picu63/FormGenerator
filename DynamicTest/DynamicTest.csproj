@@ -171,6 +171,7 @@
     <Content Include="Site.Master" />
     <Content Include="Tests\FluentGenerator.aspx" />
     <Content Include="Tests\GetDataTest.aspx" />
+    <Content Include="Tests\NonGenericTest.aspx" />
     <Content Include="Tests\SimpleFormWithoutData.aspx" />
     <Content Include="Tests\SimpleFormWithData.aspx" />
     <Content Include="Tests\Test04.aspx">
@@ -226,6 +227,13 @@
     </Compile>
     <Compile Include="Tests\GetDataTest.aspx.designer.cs">
       <DependentUpon>GetDataTest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\NonGenericTest.aspx.cs">
+      <DependentUpon>NonGenericTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tests\NonGenericTest.aspx.designer.cs">
+      <DependentUpon>NonGenericTest.aspx</DependentUpon>
     </Compile>
     <Compile Include="Tests\SimpleFormWithoutData.aspx.cs">
       <DependentUpon>SimpleFormWithoutData.aspx</DependentUpon>

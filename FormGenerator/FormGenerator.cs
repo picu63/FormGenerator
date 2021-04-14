@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -10,24 +11,60 @@ using FormGenerator.FormSections;
 
 namespace FormGenerator
 {
-    public class FormGenerator<T> : Control
+    public class FormGenerator : FormGenerator<object> 
     {
-        public ControlCollection Sections => this.Controls;
-        public FormGenerator()
+        private readonly Type _type;
+
+        public FormGenerator(Type type)
         {
-            _sections = new List<FormSection<T>>();
+            _type = type;
         }
 
-        private readonly List<FormSection<T>> _sections;
+        public override FormGenerator<object> AddSection(FormSection<object> section)
+        {
+            CheckType(section.GenericType);
+            return base.AddSection(section);
+        }
+
+        public override FormGenerator<object> FillWithData(object @object)
+        {
+            CheckType(@object.GetType());
+            return base.FillWithData(@object);
+        }
+
+        public override object GetData()
+        {
+            var @obj = base.GetData();
+            CheckType(@obj.GetType());
+            return @obj;
+        }
+
+        private void CheckType(Type type)
+        {
+            if (type != _type)
+            {
+                //throw new ArgumentException($"Invalid argument type");
+            }
+        }
+    }
+    public class FormGenerator<T> : Control
+    {
+        public ControlCollection CreatedSections => this.Controls;
+        public FormGenerator()
+        {
+            Sections = new List<FormSection<T>>();
+        }
+
+        protected readonly List<FormSection<T>> Sections;
 
         /// <summary>
         /// Adds custom sections to <see cref="FormGenerator{T}"/>.
         /// </summary>
         /// <param name="section"></param>
         /// <returns></returns>
-        public FormGenerator<T> AddSection(FormSection<T> section)
+        public virtual FormGenerator<T> AddSection(FormSection<T> section)
         {
-            _sections.Add(section);
+            Sections.Add(section);
             return this;
         }
 
@@ -35,12 +72,12 @@ namespace FormGenerator
         /// Creates a form control with all subcontrols.
         /// </summary>
         /// <returns></returns>
-        public FormGenerator<T> CreateForm()
+        public virtual FormGenerator<T> CreateForm()
         {
-            foreach (var section in _sections)
+            foreach (var section in Sections)
             {
                 section.CreateForm();
-                this.Sections.Add(section);
+                this.CreatedSections.Add(section);
             }
             return this;
         }
@@ -50,9 +87,9 @@ namespace FormGenerator
         /// </summary>
         /// <param name="object"></param>
         /// <returns></returns>
-        public FormGenerator<T> FillWithData(T @object)
+        public virtual FormGenerator<T> FillWithData(T @object)
         {
-            foreach (var section in _sections)
+            foreach (var section in Sections)
             {
                 section.FillControls(@object);
             }
@@ -60,11 +97,11 @@ namespace FormGenerator
             return this;
         }
 
-        public T GetData()
+        public virtual T GetData()
         {
             var controlsGetter = new ControlsGetter<T>(new ControlGetter());
             T @object = default;
-            foreach (var section in Sections.Cast<FormSection<T>>())
+            foreach (var section in CreatedSections.Cast<FormSection<T>>())
             {
                 @object = controlsGetter.Get(section.ControlsAdded);
             }
