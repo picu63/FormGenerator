@@ -31,10 +31,18 @@ namespace FormGenerator.FormGetter
                 {
                     case TextBox textBox:
                         value = _controlGetter.GetValueFromTextBox(textBox);
-                        p.SetValue(@object, value);
+                        if (int.TryParse(value.ToString(), out var intValue) && p.PropertyType == typeof(int))
+                        {
+                            p.SetValue(@object, intValue);
+                        }
+                        else
+                        {
+                            p.SetValue(@object, value);
+                        }
                         break;
                     case CheckBox checkBox:
                         value = _controlGetter.GetValueFromCheckBox(checkBox);
+
                         p.SetValue(@object, value);
                         break;
                 }

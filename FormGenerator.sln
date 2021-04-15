@@ -9,6 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormGenerator", "FormGenera
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebFormsHelper", "WebFormsHelper\WebFormsHelper.csproj", "{EEAF60EA-D27B-4817-91A9-FDFBE4E88051}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{9B1E28E0-3707-45A9-BCB6-174D95645142}"
+	ProjectSection(SolutionItems) = preProject
+		Documentation\README.md = Documentation\README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

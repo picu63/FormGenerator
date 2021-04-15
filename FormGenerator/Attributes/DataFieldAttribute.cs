@@ -10,7 +10,7 @@ namespace FormGenerator.Attributes
     public class DataFieldAttribute : FieldAttribute
     {
         public ControlDataType ControlDataType { get; }
-        public string[] Values { get; }
+        public object[] Values { get; }
         public string PageListLocation { get; }
 
         /// <summary>
@@ -23,7 +23,7 @@ namespace FormGenerator.Attributes
         public DataFieldAttribute(string id, string name, ControlDataType controlDataType, string[] defaultValues) : base(id, name)
         {
             ControlDataType = controlDataType;
-            Values = defaultValues;
+            Values = defaultValues; // boxing
         }
 
         /// <summary>
