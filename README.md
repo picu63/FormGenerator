@@ -37,7 +37,7 @@ Code behind:
 						IsMale = true)));
 
 ### Output:
-
+![Form Generator Simple Demo](https://github.com/picu63/FormGenerator/blob/master/Documentation/img/formGeneratorSimpleDemo.png)
 
 ## Attributes
 - `DataFieldAttribute` - Represents 
