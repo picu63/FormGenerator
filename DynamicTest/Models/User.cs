@@ -11,7 +11,7 @@ using FormGenerator.Attributes;
 
 namespace DynamicTest.Models
 {
-    [Header("Użytkownik")]
+    [Header("Edit User")]
     public class User
     {
         [NormalField("UserFirstName","First name", VariableType.String) ]
@@ -19,16 +19,16 @@ namespace DynamicTest.Models
         [NormalField("UserLastName", "Last name",VariableType.String)]
         public string LastName { get; set; }
 
-        [EnumField("userRola", "Rola", ControlDataType.DropDownList, (int)Models.Role.Manager)]
+        [EnumField("userRola", "Role", ControlDataType.DropDownList, (int)Models.Role.Manager)]
         public Role Role { get; set; }
         [DataField("userParents", "Parents", ControlDataType.ListBox, new[] { "Value1", "Value2" })]
-        public List<string> Parents { get; set; } = new List<string>(){"Janina Kosogłów", "Antonii Kosogłów"};
-        [NormalField("IsMale?","Meżczyzna?", VariableType.Bool)]
+        public List<string> Parents { get; set; } = new List<string>() { "Janina Kosogłów", "Antonii Kosogłów" };
+        [NormalField("IsMale?","Is Male?", VariableType.Bool)]
         public bool IsMale { get; set; }
-        //TODO obsługa textbox dla integer
+        //TODO textbox for integer values
         [NormalField("NipNumber", "Numer NIP", VariableType.Nip)]
         public int NipNumber { get; set; }
-        [DataField("provilance", "Województwo", ControlDataType.DropDownList, new []{"śląskie", "małopolskie", "opolskie", "mazowieckie"})]
+        [DataField("provilance", "Województwo", ControlDataType.DropDownList, new[] { "śląskie", "małopolskie", "opolskie", "mazowieckie" })]
         public List<string> Provilance { get; set; }
         [CustomField("customId", "Custom control", typeof(MyButton), "Custom control")]
         public object TestObject { get; set; }

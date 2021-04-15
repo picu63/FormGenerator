@@ -32,11 +32,12 @@ Code behind:
 	    .AddSection(new ButtonsSection<User>())
 	    .CreateForm()
 	    .FillWithData(new User() {FirstName = "Jordan", 
-								    LastName = "Peterson", 
-								    Role = Role.Administrator, 
-								    IsMale = true)));
+						LastName = "Peterson", 
+						Role = Role.Administrator, 
+						IsMale = true)));
 
 ### Output:
+
 
 ## Attributes
 - `DataFieldAttribute` - Represents 
